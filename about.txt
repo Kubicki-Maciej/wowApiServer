@@ -1,0 +1,1 @@
+1.0 version of api server which downloads all auction house database once every 1h:10m
