@@ -65,6 +65,7 @@ def create_class_realms(data):
 
 
 def function_returning_id_of_lookin_server_by_name(name_of_server):
+    # could be better algorithm
     for x in list_class_realm:
 
         if x.name_of_realm == name_of_server:
