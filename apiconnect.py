@@ -7,18 +7,35 @@ import datainfo as d
 
 api_client = BlizzardApi(d.key, d.secretkey)
 
-def create_new_folder():
+#  changed create new id file insted of one big downloadfile
+# def create_new_folder():
+#     """ create new folder where data from api came in"""
+#     try:
+#         directory = current_date()+"_Json_data"
+#         parent_dir = "E:\serverWowApi\data"
+#         path = os.path.join(parent_dir, directory)
+#         os.mkdir(path)
+#         #print('created file :'+directory)
+#         return directory
+#
+#     except FileExistsError as exc:
+#         print("file with this name exist error :"+exc)
+
+def create_new_folder(id_server):
     """ create new folder where data from api came in"""
     try:
-        directory = current_date()+"_Json_data"
-        parent_dir = "E:\serverWowApi\data"
+        directory = str(id_server)
+        parent_dir = os.getcwd() +"\data"
+        # print('make path '+ str(id_server))
         path = os.path.join(parent_dir, directory)
         os.mkdir(path)
         #print('created file :'+directory)
         return directory
 
-    except FileExistsError as exc:
-        print("file with this name exist error :"+exc)
+    except FileExistsError:
+        print("file with this name exist skip creating it")
+        directory = str(id_server)
+        return directory
 
 def current_date():
     """ return date m/d/y/h/m/ """

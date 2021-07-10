@@ -2,6 +2,8 @@
 .idea
 /__pycache__
 info.odt
-test1.py
-test12.py
-test_gui.py
+old_test/test1.py
+old_test/test12.py
+old_test/test_gui.py
+/old_test
+/data

@@ -11,6 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import downloadFile as dF
 import apiconnect as api
+import test_setting as ts
 
 
 class CheckBox:
@@ -29,6 +30,9 @@ class CheckBox:
 
     def add_to_retlanslateUi(self):
         return self.server_name
+
+    def return_id_and_name(self):
+        return self.server_name, self.server_id
 
 
 class Ui_MainWindow(object):
@@ -110,16 +114,42 @@ class Ui_MainWindow(object):
 
         if len(list_objects) > 0:
             print('start server download')
-            directory = api.create_new_folder()
-            print('created ' + directory)
+
+
             temp_text_list = ['Downloads: ']
             for y in range(len(list_objects)):
+                directory = api.create_new_folder(list_objects[y].server_id)
                 api.auction_house_download(list_objects[y].server_id, directory)
                 temp_text_list.append(list_objects[y].server_name)
             print(temp_text_list)
 
             print("dodaje do textBrowser")
             self.set_text_window1(temp_text_list, self.textBrowser)
+
+    def buttonSaveSetting(self):
+        ts.get_list_to_setting_and_save_them(self.selected_object)
+
+    def downloadButtonFromSetting(self):
+
+        load_id_name = ts.load_id_server_and_name_from_csv_file(ts.load_file_settings(ts.set_file_name))
+        name_list = load_id_name[0]
+        id_list = load_id_name[1]
+        print(name_list)
+        print(id_list)
+        counter = 0
+        temp_text_list = ['Downloads: ']
+        for id in id_list:
+
+            directory = api.create_new_folder(id)
+            api.auction_house_download(id, directory)
+            temp_text_list.append(name_list[counter])
+            counter += 1
+
+        print(temp_text_list)
+        print("dodaje do textBrowser")
+        self.set_text_window1(temp_text_list, self.textBrowser)
+
+
 
     def setupUi(self, MainWindow):
 
@@ -140,8 +170,18 @@ class Ui_MainWindow(object):
         self.pushButton_2.setGeometry(QtCore.QRect(10, 10, 391, 31))
         self.pushButton_2.setObjectName("pushButton_2")
 
+        self.pushButton_3 = QtWidgets.QPushButton(self.tab)
+        self.pushButton_3.setGeometry(QtCore.QRect(410, 60, 180, 40))
+        self.pushButton_3.setObjectName("pushButton_3")
+
+        self.pushButton_4 = QtWidgets.QPushButton(self.tab)
+        self.pushButton_4.setGeometry(QtCore.QRect(410, 120, 180, 40))
+        self.pushButton_4.setObjectName("pushButton_3")
+
         # Added
         self.pushButton_2.clicked.connect(self.downloadFile)
+        self.pushButton_3.clicked.connect(self.buttonSaveSetting)
+        self.pushButton_4.clicked.connect(self.downloadButtonFromSetting)
 
         self.radioButton = QtWidgets.QRadioButton(self.tab)
         self.radioButton.setGeometry(QtCore.QRect(20, 50, 82, 17))
@@ -196,6 +236,8 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.pushButton_2.setText(_translate("MainWindow", "Download"))
+        self.pushButton_3.setText(_translate("MainWindow", "Save Servers to Settings"))
+        self.pushButton_4.setText(_translate("MainWindow", "Download from Settings"))
         self.radioButton.setText(_translate("MainWindow", "1h"))
         self.radioButton_2.setText(_translate("MainWindow", "12h"))
         self.radioButton_3.setText(_translate("MainWindow", "24h"))
