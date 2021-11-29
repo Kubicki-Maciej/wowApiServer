@@ -183,15 +183,18 @@ class Ui_MainWindow(object):
         self.pushButton_3.clicked.connect(self.buttonSaveSetting)
         self.pushButton_4.clicked.connect(self.downloadButtonFromSetting)
 
-        self.radioButton = QtWidgets.QRadioButton(self.tab)
-        self.radioButton.setGeometry(QtCore.QRect(20, 50, 82, 17))
-        self.radioButton.setObjectName("radioButton_3")
-        self.radioButton_2 = QtWidgets.QRadioButton(self.tab)
-        self.radioButton_2.setGeometry(QtCore.QRect(100, 50, 82, 17))
-        self.radioButton_2.setObjectName("radioButton")
-        self.radioButton_3 = QtWidgets.QRadioButton(self.tab)
-        self.radioButton_3.setGeometry(QtCore.QRect(170, 50, 82, 17))
-        self.radioButton_3.setObjectName("radioButton_2")
+
+
+        # Disabled
+        # self.radioButton = QtWidgets.QRadioButton(self.tab)
+        # self.radioButton.setGeometry(QtCore.QRect(20, 50, 82, 17))
+        # self.radioButton.setObjectName("radioButton_3")
+        # self.radioButton_2 = QtWidgets.QRadioButton(self.tab)
+        # self.radioButton_2.setGeometry(QtCore.QRect(100, 50, 82, 17))
+        # self.radioButton_2.setObjectName("radioButton")
+        # self.radioButton_3 = QtWidgets.QRadioButton(self.tab)
+        # self.radioButton_3.setGeometry(QtCore.QRect(170, 50, 82, 17))
+        # self.radioButton_3.setObjectName("radioButton_2")
 
         self.textBrowser = QtWidgets.QTextBrowser(self.tab)
         self.textBrowser.setGeometry(QtCore.QRect(10, 80, 191, 251))
@@ -238,9 +241,10 @@ class Ui_MainWindow(object):
         self.pushButton_2.setText(_translate("MainWindow", "Download"))
         self.pushButton_3.setText(_translate("MainWindow", "Save Servers to Settings"))
         self.pushButton_4.setText(_translate("MainWindow", "Download from Settings"))
-        self.radioButton.setText(_translate("MainWindow", "1h"))
-        self.radioButton_2.setText(_translate("MainWindow", "12h"))
-        self.radioButton_3.setText(_translate("MainWindow", "24h"))
+        # RadioButton Disabled
+        # self.radioButton.setText(_translate("MainWindow", "1h"))
+        # self.radioButton_2.setText(_translate("MainWindow", "12h"))
+        # self.radioButton_3.setText(_translate("MainWindow", "24h"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Tab 1"))
         # self.checkBox.setText(_translate("MainWindow", "CheckBox")) removed test
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))

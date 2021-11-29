@@ -1,5 +1,3 @@
-
-
 class Realm:
     """
     clas represent a server,

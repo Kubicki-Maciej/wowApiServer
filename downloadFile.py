@@ -4,12 +4,13 @@ import apiconnect as api
 import realmlist as rl
 
 
-def func(list_of_server, directory):
+def func(list_of_server):
     """
     download files from blizzard api by id in Json
     """
     for realm in list_of_server:
         try:
+            directory = api.create_new_folder(realm.id_group)
             api.auction_house_download(realm.id_group, directory)
             print('download json file id:'+str(realm.id_group))
         except:
@@ -17,7 +18,7 @@ def func(list_of_server, directory):
 
 def downloadFunction(time, server_list):
         # create new folder to save data
-        directory = api.create_new_folder()
+
         # function downloads file
         for singleServer in server_list:
             api.auction_house_download(singleServer.server_id, directory)
